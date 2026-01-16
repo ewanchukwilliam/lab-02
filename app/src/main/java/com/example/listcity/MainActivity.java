@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+		// things you need for your lab. for clicking the buttons
+		// onClickListener/onItemClickListener
+		// EditText
         super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		cityList = findViewById(R.id.city_list);

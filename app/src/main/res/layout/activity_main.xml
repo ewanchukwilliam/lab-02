@@ -44,7 +44,7 @@
 
 	<EditText
 		android:id="@+id/city_input"
-		android:layout_width="match_parent"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:hint="Enter city name"
 		android:inputType="text"
@@ -53,6 +53,18 @@
 		android:visibility="gone"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toStartOf="@+id/confirm_button"
+		android:layout_margin="8dp" />
+
+	<Button
+		android:id="@+id/confirm_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Confirm"
+		android:textSize="18sp"
+		android:padding="16dp"
+		android:visibility="gone"
+		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		android:layout_margin="8dp" />
 

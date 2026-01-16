@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 	EditText cityInput;
 	Button addButton;
 	Button deleteButton;
+	Button confirmButton;
 	int selectedPosition = -1;
 
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 		cityInput = findViewById(R.id.city_input);
 		addButton = findViewById(R.id.add_button);
 		deleteButton = findViewById(R.id.delete_button);
+		confirmButton = findViewById(R.id.confirm_button);
 
 		String []cities={"Edmonton", "Vancouver", "Moscow", "Sydney", "Berlin", "Vienna", "Tokyo", "Beijing", "Osaka", "New Delhi"};
 
@@ -52,21 +54,27 @@ public class MainActivity extends AppCompatActivity {
 		addButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (cityInput.getVisibility() == View.GONE) {
-					// Show input field
-					cityInput.setVisibility(View.VISIBLE);
-					cityInput.requestFocus();
+				// Show input field and confirm button
+				cityInput.setVisibility(View.VISIBLE);
+				confirmButton.setVisibility(View.VISIBLE);
+				cityInput.requestFocus();
+			}
+		});
+
+		// OnClickListener for the Confirm button
+		confirmButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// Add city if text is entered
+				String cityName = cityInput.getText().toString().trim();
+				if (!cityName.isEmpty()) {
+					dataList.add(cityName);
+					cityAdapter.notifyDataSetChanged();
+					cityInput.setText("");
+					cityInput.setVisibility(View.GONE);
+					confirmButton.setVisibility(View.GONE);
 				} else {
-					// Add city if text is entered
-					String cityName = cityInput.getText().toString().trim();
-					if (!cityName.isEmpty()) {
-						dataList.add(cityName);
-						cityAdapter.notifyDataSetChanged();
-						cityInput.setText("");
-						cityInput.setVisibility(View.GONE);
-					} else {
-						Toast.makeText(MainActivity.this, "Please enter a city name", Toast.LENGTH_SHORT).show();
-					}
+					Toast.makeText(MainActivity.this, "Please enter a city name", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
